@@ -296,10 +296,10 @@
 </template>
 
 <script>
-    import request from '../../utils/test-request.js';
+    import request from '../../utils/new-request.js';
     import axios from 'axios'
     import Cookies from 'js-cookie'
-    
+
     // const request = axios.create({
     //     //请求地址，不填默认与当前前台服务同源
     //     //baseURL: 'http://localhost:9533',
@@ -502,7 +502,7 @@
     }
 
     .button {
-        
+
         position: absolute;
         left: 0px;
             /*与其它元素标签之间的间隔*/
@@ -510,7 +510,7 @@
     }
 
     .button2 {
-        
+
         position: absolute;
         left: 120px;
             /*与其它元素标签之间的间隔*/
@@ -518,10 +518,10 @@
     }
 
     .button3 {
-        
+
         position: absolute;
         left: 240px;
             /*与其它元素标签之间的间隔*/
         margin: 20px;
-    } 
+    }
 </style>
