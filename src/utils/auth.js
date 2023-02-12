@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'vue_admin_template_token'
+//当前雅典娜认证token的key为pigeon
+const TokenKey = 'pigeon'
 
 export function getToken() {
   return Cookies.get(TokenKey)

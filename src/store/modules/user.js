@@ -33,12 +33,19 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
+        console.log("login方法调用")
+        console.log(response)
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
         resolve()
       }).catch(error => {
-        reject(error)
+        //这款强制跳转，后续需要关注如何实现页面登录验证
+        commit('SET_TOKEN', "admin-token")
+        setToken("admin-token")
+        resolve()
+        console.log("login方法失败")
+        //reject(error)
       })
     })
   },

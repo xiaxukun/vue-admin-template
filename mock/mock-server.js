@@ -1,3 +1,4 @@
+//require可以引入其它模块，采用异步加载的方式
 const chokidar = require('chokidar')
 const bodyParser = require('body-parser')
 const chalk = require('chalk')
@@ -44,12 +45,13 @@ const responseFake = (url, type, respond) => {
 }
 
 module.exports = app => {
+  // 这块开启mock请求，会拦截请求body
   // parse app.body
   // https://expressjs.com/en/4x/api.html#req.body
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }))
+  // app.use(bodyParser.json())
+  // app.use(bodyParser.urlencoded({
+  //   extended: true
+  // }))
 
   const mockRoutes = registerRoutes(app)
   var mockRoutesLength = mockRoutes.mockRoutesLength

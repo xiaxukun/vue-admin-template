@@ -9,6 +9,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  //计算属性
   computed: {
     ...mapGetters([
       'name'

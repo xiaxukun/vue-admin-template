@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view />
+    <!--vue路由组件展示-->
+    <router-view/>
   </div>
 </template>
 

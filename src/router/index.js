@@ -1,6 +1,8 @@
+//创建整个应用的路由器
 import Vue from 'vue'
 import Router from 'vue-router'
 
+//挂载路由组件，在组件内部可通过this.$router获取所有的路由配置，通过this.$route获取当前的路由
 Vue.use(Router)
 
 /* Layout */
@@ -32,6 +34,7 @@ import Layout from '@/layout'
  */
 export const constantRoutes = [
   {
+    //path可配置动态路由，url上可携带参数，对应的路由页面可接受到参数的json串，通this.$route.params访问
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -43,10 +46,13 @@ export const constantRoutes = [
     hidden: true
   },
 
+  //定义路由，每个路由需要映射到一个组件
   {
-    path: '/',
-    component: Layout,
+    path: '/',  //url路径
+    //组件
+    component: Layout, 
     redirect: '/dashboard',
+    //嵌套路由
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
@@ -61,6 +67,7 @@ export const constantRoutes = [
     redirect: '/example/table',
     name: 'Example',
     meta: { title: 'Example', icon: 'el-icon-s-help' },
+    //可以通过children属性进行多层嵌套
     children: [
       {
         path: 'table',
@@ -80,12 +87,39 @@ export const constantRoutes = [
   {
     path: '/form',
     component: Layout,
+    //children选项配置二级路由
     children: [
       {
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
         meta: { title: 'Form', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/order',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Order',
+        component: () => import('@/views/order/index'),
+        meta: { title: '订单', icon: 'form'}
+      }
+    ]
+  },
+
+  {
+    path: '/refund',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'refund',
+        component: () => import('@/views/refund/index'),
+        meta: { title: '回款', icon: 'form'}
       }
     ]
   },
