@@ -296,9 +296,7 @@
 </template>
 
 <script>
-    import request from '../../utils/new-request.js';
-    import axios from 'axios'
-    import Cookies from 'js-cookie'
+    import request from '@/utils/new-request.js';
 
     // const request = axios.create({
     //     //请求地址，不填默认与当前前台服务同源

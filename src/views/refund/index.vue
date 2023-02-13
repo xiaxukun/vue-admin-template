@@ -62,7 +62,7 @@
 
 <script>
 
-    import request from '@/utils/test-request'
+    import request from '@/utils/new-request'
     import axios from 'axios'
 
     export default {
