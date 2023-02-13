@@ -11,7 +11,7 @@ const request = axios.create({
 request.interceptors.request.use(config => {
     //请求头设置参数编码规范
     //config.headers['Context-type'] = 'application/json;charset=utf-8';
-    //请求头设token
+    //请求头设置token，请求网关用于鉴权
     config.headers['authorization'] = store.state.cookieKey;
     return config;
 }, error => {

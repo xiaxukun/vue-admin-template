@@ -132,7 +132,6 @@
                 this.orderNo = undefined;
             },
             sendMessage(row) {
-                console.log(row);
                 axios({
                     method: 'post',
                     url: 'http://localhost:8070/test',

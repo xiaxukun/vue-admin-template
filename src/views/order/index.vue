@@ -399,12 +399,31 @@
             handle() {
             },
             sendMessage(row) {
-                let param = new Object();
-                param.date = row.date;
-                param.name = row.name;
-                param.orderNo = row.orderNo;
-                param.product = row.product;
-                //console.log(param)
+                //针对当前行数据的不同事件码，调用不同的订单接口
+                switch (row.eventCode)
+                {
+                    case "SADFT":
+                        request.post('/inter/plutus/order/precreate', row).then(result => {
+                            alert(result.message);
+                        }).catch(error => {
+                            alert(error);
+                        });
+                        break;
+                    case "COMM":
+                        request.post('/inter/plutus/order/submit', row).then(result => {
+                            alert(result.message);
+                        }).catch(error => {
+                            alert(error);
+                        });
+                        break;
+                    case "CONFIRM":
+                        request.post('/inter/plutus/order/confirm', row).then(result => {
+                            alert(result.message);
+                        }).catch(error => {
+                            alert(error);
+                        });
+                        break;
+                }
                 request.post('/proxy/orderInsert', param).then(result => {
                     alert(result.message)
                 }).catch(err => {
@@ -415,7 +434,7 @@
                 let param = new Object();
                 param.pageNum = pageNum;
                 param.pageSize = pageSize;
-                request.post('/proxy/qilin/order/list', param).then(result => {
+                request.post('/qilin/order/list', param).then(result => {
                     console.log(result)
                     this.totalPage = result.data.totalCount;
                     this.tableData = result.data.items;
@@ -425,16 +444,6 @@
             },
             handleCurrentChange(val) {
                 this.currentPage = val;
-                //let param = new Object();
-                //param.pageNum = val;
-                //param.pageSize = this.pageSize;
-                // request.post('/proxy/getOrderInfo', param).then(result => {
-                //     console.log(result.message)
-                //     this.totalPage = result.message.total;
-                //     this.tableData = result.message.list;
-                // }).catch(err => {
-                //     alert(err)
-                // })
                 this.getOrderInfo(val, this.pageSize);
             },
             search() {
@@ -467,24 +476,11 @@
             },
             deleteProduct(index) {
                 this.tableData[0].orderGoodsList.pop(1);
-            },
-            test() {
-                window.location.replace("https://atlas-inter.kezaihui.com/#/login");
             }
         },
         //生命周期创建后节点
         created() {
-            //加载后台数据页面展示
-            //this.getOrderInfo(1, 5);
-            //let param = new Object();
-            //param.pageNum = 1;
-            //param.pageSize = 5;
             this.getOrderInfo(this.currentPage, this.pageSize);
-            // axios.post('http://localhost:8070/getOrderInfo', param).then(result => {
-            //     console.log(result)
-            // }).catch(error => {
-            //     console.log(error)
-            // })
         },
         //生命周期函数的挂载后节点
         mounted() {
